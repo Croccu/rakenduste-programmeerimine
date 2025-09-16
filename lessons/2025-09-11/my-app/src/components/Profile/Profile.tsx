@@ -18,7 +18,7 @@ function Profile() {
           </ul>
         </div>
         <div className="card-contact">
-          <h3>Kirjuta mulle midagi ilusat</h3>
+          <h3>Võta minuga ühendust:</h3>
           <div id="contact-form">
             <input id="email-form" type="text" placeholder="Sisesta oma email"/>
             <input id="text-form" type="text" placeholder="Kirjuta oma sõnum siia"/>
