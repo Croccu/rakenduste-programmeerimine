@@ -1,33 +1,54 @@
 .card-counter {
-  padding: 30px;
-  max-width: 600px;
-  margin: 0 auto;
-  border: 2px solid #4b4b4b;
-  border-radius: 15px;
-  box-shadow: 3px 5px 10px rgb(61, 61, 61);
+  max-width: 700px;
+  margin: 60px auto;
+  padding: 48px 32px;
+  background: #1e1e1e;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  color: #e8e8e8;
+  text-align: center;
+}
+
+.card-counter h2 {
+  font-size: 2.25rem;
+  font-weight: 800;
+  margin: 0 0 28px;
 }
 
 .button-group {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  justify-content: center;
+  gap: 18px;
+  align-items: center;
 }
 
 .buttons {
   display: flex;
-  gap: 10px;
+  flex-wrap: wrap;
+  gap: 14px;
   justify-content: center;
-  flex-direction: row;
 }
 
-.button-reset {
-  margin-top: 10px;
-}
-
+/* Pill styling identical to Profile chips */
 button {
-  max-width: 100%;
-  min-width: 75px;
-  padding: 15px;
+  background: #2d2d2d;
+  border: 1px solid #3a3a3a;
+  color: #f2f2f2;
+  border-radius: 6px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  min-width: 100px;
+  height: 40px;
+  line-height: 24px;
   box-sizing: border-box;
+  transition: filter 0.2s ease, transform 0.05s ease, border-color 0.2s ease;
+}
+
+button:hover { filter: brightness(1.05); border-color: #4a4a4a; }
+button:active { transform: translateY(1px); }
+
+.button-reset { margin-top: 24px; }
+.button-reset button {
+  background: darkred;
+  border: none;
 }

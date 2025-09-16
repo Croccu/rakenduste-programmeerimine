@@ -1,0 +1,85 @@
+.card-profile {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #1e1e1e;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  color: #f0f0f0;
+  text-align: center;
+}
+
+.card-details h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.card-details h3 {
+  margin-top: 25px;
+  margin-bottom: 15px;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.card-details ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.card-details li {
+  margin: 8px 8px;
+  padding: 6px 12px;
+  background: #2c2c2c;
+  border-radius: 6px;
+  display: inline-block;
+  min-width: 180px;
+}
+
+.card-contact h3 {
+  margin-top: 40px;
+  margin-bottom: 15px;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+#contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+#contact-form input:nth-of-type(2) { /* message */
+  height: 20ch;            /* wider */
+}
+
+
+#contact-form input {
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  background: #2c2c2c;
+  color: #f0f0f0;
+  font-size: 1rem;
+}
+
+#contact-form input::placeholder {
+  color: #999;
+}
+
+#button-send {
+  background-color: darkgreen;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+#button-send:hover {
+  background-color: #0f7d0f;
+}

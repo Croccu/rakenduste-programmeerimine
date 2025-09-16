@@ -45,9 +45,8 @@ function Counter() {
 
   return (
     <>
-      <h1>Vite + React</h1>
       <div className="card-counter">
-      <h2>Count is {count}</h2>
+      <h3>Count is {count}</h3>
         <div className="button-group" style={{ display: "flex", gap: "10px" }}>
           <div className="buttons">
             <button onClick={incrementCounter}>+1</button>
