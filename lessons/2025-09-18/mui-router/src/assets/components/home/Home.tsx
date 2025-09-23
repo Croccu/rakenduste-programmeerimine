@@ -1,5 +1,15 @@
+import { Typography } from "@mui/material"
+
 function Home() {
-  return <h2>Home page</h2>;
+  return (
+    <>
+      <Typography variant="h4">Home page</Typography>
+      <Typography>
+          See on rakenduse avaleht. Siit saad navigeerida teistesse lehtedesse.
+      </Typography>
+    </>
+  )
+
 }
 
 export default Home
