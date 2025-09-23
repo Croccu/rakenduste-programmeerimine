@@ -13,20 +13,13 @@ const router = createHashRouter([
   {
     path: "/",
     element: <App />,
+    children: [
+      { index: true, element: <Home /> },
+      { path: "about", element: <About /> },
+      { path: "something", element: <Something /> },
+    ],
   },
-  {
-    path: "/",
-    element: <About />,
-  },
-  {
-    path: "/",
-    element: <Home />,
-  },
-  {
-    path: "/",
-    element: <Something />,
-  },
-]);
+])
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

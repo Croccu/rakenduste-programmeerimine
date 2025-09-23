@@ -1,8 +1,7 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import { Button } from "@mui/material";
+import { Link, Outlet } from "react-router-dom"
 
 function App() {
   const [count, setCount] = useState(0)
@@ -10,26 +9,20 @@ function App() {
   return (
     <>
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <nav>
+          <Button color="inherit" component={Link} to="/">Home</Button>
+          <Button color="inherit" component={Link} to="/about">About</Button>
+          <Button color="inherit" component={Link} to="/something">Something</Button>
+        </nav>
+        <hr />
+        <Outlet />
       </div>
-      <h1>Vite + React</h1>
       <div className="card" style={{display: 'flex', gap: '10px', alignItems: 'center', flexDirection: 'column', marginTop: '20px'}}>
         <Button onClick={() => setCount((count) => count + 1)} variant="outlined" color="primary">
           count is {count}
         </Button>
         <Button onClick={() => setCount(0)} variant="outlined" color="error">Reset</Button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
