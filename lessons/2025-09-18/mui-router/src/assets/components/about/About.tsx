@@ -16,8 +16,8 @@ import SendIcon from "@mui/icons-material/Send"
 export default function Home() {
   return (
     <Box>
-      <Card sx={{ minWidth: 800, minHeight: 400, mx: "auto", bgcolor: "#e6e6e6e6", boxShadow: "2px 2px 5px rgba(0, 0, 0, 0.2)" }}>
-        <CardHeader title="Rico Paum" subheader="Huvid / Hobid & Kontakt" />
+      <Card sx={{ minWidth: 1200, minHeight: 400, mx: "auto", bgcolor: "#e6e6e6e6", boxShadow: "2px 2px 5px rgba(0, 0, 0, 0.2)" }}>
+        <CardHeader title="Rico Paum" sx={{mb: "20px"}} />
         <CardContent>
           <Stack
             direction={{ xs: "column", md: "row" }}
@@ -53,7 +53,7 @@ export default function Home() {
                   "& .MuiOutlinedInput-inputMultiline": { backgroundColor: "#fff" },}} fullWidth />
                 <TextField label="Sõnum" multiline minRows={3}   sx={{"& .MuiOutlinedInput-root": { backgroundColor: "#fff" },
                   "& .MuiOutlinedInput-inputMultiline": { backgroundColor: "#fff" },}} fullWidth />
-                <Button type="submit" variant="contained" endIcon={<SendIcon />} >Saada</Button>
+                <Button type="submit" variant="contained" endIcon={<SendIcon />} >Saada!</Button>
               </Stack>
             </Box>
           </Stack>

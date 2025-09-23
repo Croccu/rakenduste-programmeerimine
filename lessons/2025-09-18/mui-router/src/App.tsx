@@ -17,7 +17,7 @@ function App() {
           borderColor: "divider",
         }}
       >
-        <Toolbar sx={{ gap: 2 }}>
+        <Toolbar sx={{ gap: 2 , mx: "auto" , justifyContent: "space-between", width: "100%", maxWidth: 800 }}>
           <Button color="inherit" component={Link} to="/">
             Home
           </Button>

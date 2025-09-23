@@ -2,6 +2,10 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { RouterProvider, createHashRouter } from "react-router";
 import './index.css'
+import { ThemeProvider, CssBaseline } from "@mui/material"
+import { theme } from "./theme"
+
+
 import App from './App.tsx'
 import About from "./assets/components/about/About.tsx";
 import Home from "./assets/components/home/Home.tsx";
@@ -23,6 +27,9 @@ const router = createHashRouter([
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <RouterProvider router={router} />
+    </ThemeProvider>
   </StrictMode>,
 )
