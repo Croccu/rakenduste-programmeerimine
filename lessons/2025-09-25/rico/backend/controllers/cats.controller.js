@@ -1,4 +1,6 @@
-const cats = [
+import { v4 as uuidv4 } from "uuid";
+
+let cats = [
   {
     id: "7d613b93-fa3e-4ef3-a9d2-e09e5ca6e4e6",
     name: "Meow",
@@ -15,16 +17,52 @@ const cats = [
   },
 ];
 
-exports.create = (req, res) => {
+export function create(req, res) {
   const { name } = req.body;
   console.log({ name });
-  res.sendStatus(201);
+
+  const newCat = {
+    id: uuidv4(),
+    name,
+    createdAt: Date.now(),
+    updatedAt: null,
+    deleted: false,
+  };
+  cats.push(newCat);
+  res.status(201).send(newCat);
+}
+
+export function read(req, res) {
+  res.send(cats.filter((cat.deleted === false)));
+}
+
+export function update(req, res) {
+  const { id, name } = req.body;
+  const cat = cats.find((cat) => cat.id === id && !cat.deleted);
+
+  if (!cat) {
+    return res.status(404).send({ message: "Cat not found" });
+  }
+
+  if (name) {
+    cat.name = name;
+    cat.updatedAt = Date.now();
+  }
+
+  res.send(cat);
+}
+
+const _delete = (req, res) => {
+  const { id } = req.body;
+  const cat = cats.find((cat) => cat.id === id && !cat.deleted);
+
+  if (!cat) {
+    return res.status(404).send({ message: "Cat not found" });
+  }
+
+  cat.deleted = true;
+  cat.updatedAt = Date.now();
+
+  res.status(204).send();
 };
-
-exports.read = (req, res) => {
-  res.send(cats);
-};
-
-exports.update = (req, res) => {};
-
-exports.delete = (req, res) => {};
+export { _delete as delete };
