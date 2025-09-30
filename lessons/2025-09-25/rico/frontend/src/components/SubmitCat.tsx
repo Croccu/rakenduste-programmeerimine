@@ -8,51 +8,43 @@ type SubmitCatProps = {
 const SubmitCat = ({ fetchCats }: SubmitCatProps) => {
   const [name, setName] = useState("");
 
-  const submitCat = async () => {
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    if (!name.trim()) return;
+
     try {
       const response = await fetch("http://localhost:3000/cats", {
         method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ name: name }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name }),
       });
 
-      if (response.ok) {
-        console.log("Success", response);
-        // Snackbar success
-      } else {
-        console.warn("No success");
-        // Snackbar
+      if (!response.ok) {
+        console.warn("Failed to add cat");
+        return;
       }
+
+      setName("");        // clear input
+      fetchCats();        // reload cats immediately
     } catch (error) {
-      console.warn(error);
+      console.error("Error adding cat:", error);
     }
   };
 
-  const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
-
-    submitCat();
-    setTimeout(fetchCats, 100);
-  };
-
   return (
-    <Box
-      sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
-    >
-      <form onSubmit={handleSubmit}>
-        <Stack>
-          <TextField
-            label="Cat name"
-            onChange={(event) => setName(event.target.value)}
-          />
-          <Button variant="contained" color="success" type="submit">
-            Add
-          </Button>
-        </Stack>
-      </form>
+    <Box component="form" onSubmit={handleSubmit}>
+      <Stack direction="row" spacing={1}>
+        <TextField
+          fullWidth
+          label="Cat name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          size="small"
+        />
+        <Button variant="contained" color="success" type="submit">
+          Add
+        </Button>
+      </Stack>
     </Box>
   );
 };
