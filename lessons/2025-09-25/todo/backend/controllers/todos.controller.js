@@ -1,4 +1,4 @@
-import { v4 as uuidv4 } from "uuid";
+const { v4: uuidv4 } = require("uuid");
 
 let todos = [
   {
@@ -7,12 +7,11 @@ let todos = [
     completed: false,
     createdAt: Date.now(),
     updatedAt: null,
-    deleted: false
-  }
+    deleted: false,
+  },
 ];
 
-// CREATE
-export function create(req, res) {
+exports.create = (req, res) => {
   const { title } = req.body;
 
   const newTodo = {
@@ -21,20 +20,18 @@ export function create(req, res) {
     completed: false,
     createdAt: Date.now(),
     updatedAt: null,
-    deleted: false
+    deleted: false,
   };
 
   todos.push(newTodo);
   res.status(201).json(newTodo);
-}
+};
 
-// READ
-export function read(req, res) {
+exports.read = (req, res) => {
   res.json(todos.filter((t) => !t.deleted));
-}
+};
 
-// UPDATE
-export function update(req, res) {
+exports.update = (req, res) => {
   const { id, title, completed } = req.body;
   const todo = todos.find((t) => t.id === id && !t.deleted);
 
@@ -47,10 +44,9 @@ export function update(req, res) {
   todo.updatedAt = Date.now();
 
   res.json(todo);
-}
+};
 
-// DELETE (soft)
-export function remove(req, res) {
+exports.delete = (req, res) => {
   const { id } = req.body;
   const todo = todos.find((t) => t.id === id && !t.deleted);
 
@@ -62,4 +58,4 @@ export function remove(req, res) {
   todo.updatedAt = Date.now();
 
   res.status(204).send();
-}
+};

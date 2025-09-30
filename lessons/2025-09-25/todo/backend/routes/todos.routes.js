@@ -1,26 +1,45 @@
-import express from "express";
-import { body } from "express-validator";
-import { create, read, update, remove } from "../controllers/todos.controller.js";
+const express = require("express");
+const { body, validationResult } = require("express-validator");
+const todosController = require("../controllers/todos.controller");
+const {
+  todosRouteMiddleware,
+  todosGetRouteMiddleware,
+} = require("../middlewares/todos.middlewares");
 
-export const todosRouter = express.Router();
+const router = express.Router();
 
+// validation error handler
+function handleValidationErrors(req, res, next) {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+  next();
+}
 
-todosRouter.get("/", read);
+router.use(todosRouteMiddleware);
 
-todosRouter.post(
+router.get("/", todosGetRouteMiddleware, todosController.read);
+
+router.post(
   "/",
   body("title").isString().notEmpty().withMessage("Title is required"),
-  create
+  handleValidationErrors,
+  todosController.create
 );
 
-todosRouter.put(
+router.put(
   "/",
   body("id").isString().notEmpty(),
-  update
+  handleValidationErrors,
+  todosController.update
 );
 
-todosRouter.delete(
+router.delete(
   "/",
   body("id").isString().notEmpty(),
-  remove
+  handleValidationErrors,
+  todosController.delete
 );
+
+module.exports = router;

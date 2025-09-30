@@ -1,6 +1,6 @@
 import { createTheme, CssBaseline, ThemeProvider } from '@mui/material';
 import './App.css'
-import Cats from './components/Cats'
+import Todos from './components/Todos';
 
 
 
@@ -37,7 +37,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline /> {/* Normalize/reset styles across browsers */}
-      <Cats />
+      <Todos />
     </ThemeProvider>
   );
 }
