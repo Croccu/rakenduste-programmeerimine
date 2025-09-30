@@ -1,4 +1,4 @@
-const { v4: uuidv4 } = require("uuid");
+import { v4 as uuidv4 } from "uuid";
 
 let todos = [
   {
@@ -11,7 +11,7 @@ let todos = [
   },
 ];
 
-exports.create = (req, res) => {
+function create(req, res) {
   const { title } = req.body;
 
   const newTodo = {
@@ -25,13 +25,13 @@ exports.create = (req, res) => {
 
   todos.push(newTodo);
   res.status(201).json(newTodo);
-};
+}
 
-exports.read = (req, res) => {
+function read(req, res) {
   res.json(todos.filter((t) => !t.deleted));
-};
+}
 
-exports.update = (req, res) => {
+function update(req, res) {
   const { id, title, completed } = req.body;
   const todo = todos.find((t) => t.id === id && !t.deleted);
 
@@ -44,9 +44,9 @@ exports.update = (req, res) => {
   todo.updatedAt = Date.now();
 
   res.json(todo);
-};
+}
 
-exports.delete = (req, res) => {
+function _delete(req, res) {
   const { id } = req.body;
   const todo = todos.find((t) => t.id === id && !t.deleted);
 
@@ -58,9 +58,9 @@ exports.delete = (req, res) => {
   todo.updatedAt = Date.now();
 
   res.status(204).send();
-};
+}
 
-exports.adminToggleDeleted = (req, res) => {
+function adminToggleDeleted(req, res) {
   const { id } = req.body;
   const todo = todos.find((t) => t.id === id);
 
@@ -72,8 +72,10 @@ exports.adminToggleDeleted = (req, res) => {
   todo.updatedAt = Date.now();
 
   res.json(todo);
-};
+}
 
-exports.adminReadAll = (req, res) => {
+function adminReadAll(req, res) {
   res.json(todos); // no filter → includes deleted
-};
+}
+
+export { create, read, update, _delete as delete, adminToggleDeleted, adminReadAll };

@@ -1,6 +1,8 @@
-const express = require("express");
-const cors = require("cors");
-const todosRoutes = require("./routes/todos.routes");
+import express from "express";
+import cors from "cors";
+
+import { todosRouter } from "./routes/todos.routes.js";
+import { authRouter } from "./routes/auth.routes.js";
 
 const app = express();
 const PORT = 3000;
@@ -8,7 +10,8 @@ const PORT = 3000;
 app.use(cors());
 app.use(express.json());
 
-app.use("/todos", todosRoutes);
+app.use("/todos", todosRouter);
+app.use("/auth", authRouter);
 
 app.get("/", (req, res) => {
   res.send("TODO API is running!");

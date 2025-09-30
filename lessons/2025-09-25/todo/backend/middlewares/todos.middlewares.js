@@ -1,11 +1,11 @@
-const todosRouteMiddleware = (req, res, next) => {
-  console.log("TODO route hit at:", Date.now());
+function todosRouteMiddleware(req, res, next) {
+  console.log("Time:", Date.now());
   next();
-};
+}
 
-const todosGetRouteMiddleware = (req, res, next) => {
-  console.log("GET /todos called");
+function todosGetRouteMiddleware(req, res, next) {
+  console.log("GET middleware");
   next();
-};
+}
 
-module.exports = { todosRouteMiddleware, todosGetRouteMiddleware };
+export { todosRouteMiddleware, todosGetRouteMiddleware };

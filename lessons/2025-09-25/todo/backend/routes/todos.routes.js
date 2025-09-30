@@ -1,12 +1,12 @@
-const express = require("express");
-const { body, validationResult } = require("express-validator");
-const todosController = require("../controllers/todos.controller");
-const {
+import express from "express";
+import { body, validationResult } from "express-validator";
+import * as todosController from "../controllers/todos.controller.js";
+import {
   todosRouteMiddleware,
   todosGetRouteMiddleware,
-} = require("../middlewares/todos.middlewares");
+} from "../middlewares/todos.middlewares.js";
 
-const router = express.Router();
+const todosRouter = express.Router();
 
 // validation error handler
 function handleValidationErrors(req, res, next) {
@@ -17,25 +17,25 @@ function handleValidationErrors(req, res, next) {
   next();
 }
 
-router.use(todosRouteMiddleware);
+todosRouter.use(todosRouteMiddleware);
 
-router.get("/", todosGetRouteMiddleware, todosController.read);
+todosRouter.get("/", todosGetRouteMiddleware, todosController.read);
 
-router.post(
+todosRouter.post(
   "/",
   body("title").isString().notEmpty().withMessage("Title is required"),
   handleValidationErrors,
   todosController.create
 );
 
-router.put(
+todosRouter.put(
   "/",
   body("id").isString().notEmpty(),
   handleValidationErrors,
   todosController.update
 );
 
-router.delete(
+todosRouter.delete(
   "/",
   body("id").isString().notEmpty(),
   handleValidationErrors,
@@ -43,14 +43,13 @@ router.delete(
 );
 
 // ADMIN toggle deleted
-router.patch(
+todosRouter.patch(
   "/admin/toggle",
   body("id").isString().notEmpty(),
   handleValidationErrors,
   todosController.adminToggleDeleted
 );
 
-router.get("/admin/all", todosController.adminReadAll);
+todosRouter.get("/admin/all", todosController.adminReadAll);
 
-
-module.exports = router;
+export { todosRouter };
