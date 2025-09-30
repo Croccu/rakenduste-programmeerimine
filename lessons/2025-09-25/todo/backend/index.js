@@ -1,19 +1,19 @@
-const express = require('express');
-const cors = require('cors');
+import express from "express";
+import cors from "cors";
+import { todosRouter } from "./routes/todos.routes.js";
 
 const app = express();
-const PORT = 3000;
+const PORT = 3001;
 
 app.use(cors());
 app.use(express.json());
 
-const catsRoutes = require("./routes/cats.routes");
-app.use("/cats", catsRoutes);
+app.use("/todos", todosRouter);
 
-app.get('/', (req, res) => {
-  res.send('Hello World!');
+app.get("/", (req, res) => {
+  res.send("TODO API is running!");
 });
 
 app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(`Server running at http://localhost:${PORT}`);
 });
