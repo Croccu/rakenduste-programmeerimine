@@ -42,4 +42,15 @@ router.delete(
   todosController.delete
 );
 
+// ADMIN toggle deleted
+router.patch(
+  "/admin/toggle",
+  body("id").isString().notEmpty(),
+  handleValidationErrors,
+  todosController.adminToggleDeleted
+);
+
+router.get("/admin/all", todosController.adminReadAll);
+
+
 module.exports = router;

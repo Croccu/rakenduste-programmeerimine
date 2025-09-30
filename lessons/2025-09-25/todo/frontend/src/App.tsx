@@ -1,11 +1,11 @@
-import { createTheme, CssBaseline, ThemeProvider } from '@mui/material';
-import './App.css'
-import Todos from './components/Todos';
-
-
+import { createTheme, CssBaseline, ThemeProvider, Button, Stack } from "@mui/material";
+import { useState } from "react";
+import "./App.css";
+import Todos from "./components/Todos";
+import AdminTodos from "./components/AdminTodos";
 
 const theme = createTheme({
-    palette: {
+  palette: {
     mode: "light",
     background: {
       default: "#f5f5f5", // page background
@@ -34,12 +34,29 @@ const theme = createTheme({
 });
 
 function App() {
+  const [adminMode, setAdminMode] = useState(false);
+
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline /> {/* Normalize/reset styles across browsers */}
-      <Todos />
+      <CssBaseline />
+      <Stack direction="row" spacing={2} sx={{ m: 2 }}>
+        <Button
+          variant={adminMode ? "outlined" : "contained"}
+          onClick={() => setAdminMode(false)}
+        >
+          Todos
+        </Button>
+        <Button
+          variant={adminMode ? "contained" : "outlined"}
+          onClick={() => setAdminMode(true)}
+        >
+          Admin
+        </Button>
+      </Stack>
+
+      {adminMode ? <AdminTodos /> : <Todos />}
     </ThemeProvider>
   );
 }
 
-export default App
+export default App;

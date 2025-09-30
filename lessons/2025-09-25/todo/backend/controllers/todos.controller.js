@@ -59,3 +59,21 @@ exports.delete = (req, res) => {
 
   res.status(204).send();
 };
+
+exports.adminToggleDeleted = (req, res) => {
+  const { id } = req.body;
+  const todo = todos.find((t) => t.id === id);
+
+  if (!todo) {
+    return res.status(404).json({ message: "Todo not found" });
+  }
+
+  todo.deleted = !todo.deleted;
+  todo.updatedAt = Date.now();
+
+  res.json(todo);
+};
+
+exports.adminReadAll = (req, res) => {
+  res.json(todos); // no filter → includes deleted
+};
