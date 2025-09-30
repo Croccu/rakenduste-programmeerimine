@@ -33,7 +33,7 @@ export function create(req, res) {
 }
 
 export function read(req, res) {
-  res.send(cats.filter((cat.deleted === false)));
+  res.send(cats.filter((cat) => !cat.deleted));
 }
 
 export function update(req, res) {
@@ -63,6 +63,7 @@ const _delete = (req, res) => {
   cat.deleted = true;
   cat.updatedAt = Date.now();
 
-  res.status(204).send();
+  res.status(204).send(); // no content to send
 };
+
 export { _delete as delete };

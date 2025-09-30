@@ -13,7 +13,7 @@
   "license": "ISC",
   "type": "commonjs",
   "description": "",
-  "dependencies": {
+  "devDependencies": {
     "concurrently": "^9.2.1"
   }
 }
