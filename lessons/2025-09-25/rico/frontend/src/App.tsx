@@ -2,21 +2,23 @@ import { createTheme, CssBaseline, ThemeProvider } from '@mui/material';
 import './App.css'
 import Cats from './components/Cats'
 
+
+
 const theme = createTheme({
     palette: {
-    mode: "light", // or "dark"
+    mode: "light",
     background: {
       default: "#f5f5f5", // page background
       paper: "#ffffff",   // cards/forms background
     },
     primary: {
-      main: "#1976d2", // blue
+      main: "#1976d2",
     },
     secondary: {
-      main: "#d32f2f", // red
+      main: "#d32f2f",
     },
     success: {
-      main: "#2e7d32", // green
+      main: "#2e7d32",
     },
   },
   typography: {
